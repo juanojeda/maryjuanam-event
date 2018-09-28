@@ -4,10 +4,13 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
+    "build:prod": "next export",
     "start": "NODE_ENV=production node server.js",
     "test": "NODE_ENV=test jest",
     "lint:styles": "stylelint ./lib",
-    "lint:js": "eslint ./lib"
+    "lint:js": "eslint ./lib",
+    "netlify:build": "netlify-lambda build ./netlify",
+    "netlify:serve": "netlify-lambda serve ./netlify"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",
@@ -40,6 +43,7 @@
     "graphql-anywhere": "^4.0.2",
     "graphql-tag": "^2.5.0",
     "isomorphic-unfetch": "^2.0.0",
+    "netlify-lambda": "^0.4.0",
     "next": "^7.0.0",
     "next-redux-saga": "^1.0.0",
     "next-redux-wrapper": "^1.3.5",
