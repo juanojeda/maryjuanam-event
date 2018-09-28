@@ -1,0 +1,14 @@
+
+[
+  {
+    "guests": [
+      {"guestName":"Daniel Napoleoni", "rsvp": null },
+      {"guestName": "Rosemarie Walshaw", "rsvp": null}
+    ]
+  },
+  {
+    "guests": [
+      {"guestName":"Sharath Nagaraj", "rsvp": null}
+    ]
+  }
+]
