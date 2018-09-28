@@ -1,4 +1,9 @@
 const handler = function handler(event, context, callback) {
+  console.log(`CONTEXT: =====
+  ${context}
+  `);
+  console.log(`EVENT: =====
+  ${event}`);
   const { PASS } = context.headers;
   const passAttempt = event.body.pass;
   const respTemplate = {
