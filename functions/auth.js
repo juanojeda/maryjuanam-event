@@ -74,28 +74,24 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 const handler = function handler(event, context, callback) {
-  console.log(`CONTEXT: =====
-  ${JSON.stringify(context)}
-  `);
-  console.log(`EVENT: =====
-  ${JSON.stringify(event)}`);
   const {
     PASS
   } = process.env;
-  const passAttempt = event.body.pass;
-  const respTemplate = {
-    statusCode: 401
-  };
+  const {
+    pass
+  } = JSON.parse(event.body);
 
-  if (PASS === passAttempt) {
-    callback(null, _extends({}, respTemplate, {
-      statusCode: 200
-    }));
+  if (PASS === pass) {
+    callback(null, {
+      statusCode: 200,
+      body: 'password is correct'
+    });
   } else {
-    callback(null, _extends({}, respTemplate));
+    callback(null, {
+      statusCode: 401,
+      body: 'password is incorrect'
+    });
   }
 };
 

@@ -1,18 +1,11 @@
 const handler = function handler(event, context, callback) {
-  console.log(`CONTEXT: =====
-  ${JSON.stringify(context)}
-  `);
-  console.log(`EVENT: =====
-  ${JSON.stringify(event)}`);
   const { PASS } = process.env;
-  const passAttempt = event.body.pass;
-  const respTemplate = {
-    statusCode: 401,
-  };
-  if (PASS === passAttempt) {
-    callback(null, Object.assign({}, respTemplate, { statusCode: 200 }));
+  const { pass } = JSON.parse(event.body);
+
+  if (PASS === pass) {
+    callback(null, { statusCode: 200, body: 'password is correct' });
   } else {
-    callback(null, Object.assign({}, respTemplate));
+    callback(null, { statusCode: 401, body: 'password is incorrect' });
   }
 };
 
