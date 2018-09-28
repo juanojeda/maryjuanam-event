@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "build:prod": "next export",
+    "build:prod": "next build && next export",
     "start": "NODE_ENV=production node server.js",
     "test": "NODE_ENV=test jest",
     "lint:styles": "stylelint ./lib",
