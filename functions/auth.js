@@ -76,10 +76,15 @@ Object.defineProperty(exports, "__esModule", {
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const handler = function (event, context, callback) {
+const handler = function handler(event, context, callback) {
+  console.log(`CONTEXT: =====
+  ${JSON.stringify(context)}
+  `);
+  console.log(`EVENT: =====
+  ${JSON.stringify(event)}`);
   const {
     PASS
-  } = context.headers;
+  } = process.env;
   const passAttempt = event.body.pass;
   const respTemplate = {
     statusCode: 401

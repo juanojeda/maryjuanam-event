@@ -1,10 +1,10 @@
 const handler = function handler(event, context, callback) {
   console.log(`CONTEXT: =====
-  ${context}
+  ${JSON.stringify(context)}
   `);
   console.log(`EVENT: =====
-  ${event}`);
-  const { PASS } = context.headers;
+  ${JSON.stringify(event)}`);
+  const { PASS } = process.env;
   const passAttempt = event.body.pass;
   const respTemplate = {
     statusCode: 401,
