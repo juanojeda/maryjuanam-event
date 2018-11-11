@@ -1,31 +1,30 @@
-import Link from 'next/link'
-import { withRouter } from 'next/router'
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import styled from 'styled-components';
+
+import Link from 'next/link';
+import { withRouter } from 'next/router';
+
+const StyledHeader = styled.header``;
 
 const Header = ({ router: { pathname } }) => (
-  <header>
-    <Link prefetch href='/'>
-      <a className={pathname === '/' ? 'is-active' : ''}>Home</a>
+  <StyledHeader>
+    <Link prefetch href="/">
+      <a href={pathname} className={pathname === '/' ? 'is-active' : ''}>
+        Home
+      </a>
     </Link>
-    <Link prefetch href='/about'>
-      <a className={pathname === '/about' ? 'is-active' : ''}>About</a>
+    <Link prefetch href="/about">
+      <a href={pathname} className={pathname === '/about' ? 'is-active' : ''}>
+        About
+      </a>
     </Link>
-    <Link prefetch href='/blog'>
-      <a className={pathname === '/blog' ? 'is-active' : ''}>Blog</a>
-    </Link>
-    <style jsx>{`
-      header {
-        margin-bottom: 25px;
-      }
-      a {
-        font-size: 14px;
-        margin-right: 15px;
-        text-decoration: none;
-      }
-      .is-active {
-        text-decoration: underline;
-      }
-    `}</style>
-  </header>
-)
+  </StyledHeader>
+);
 
-export default withRouter(Header)
+Header.propTypes = {
+  router: PropTypes.object.isRequired,
+};
+
+export default withRouter(Header);

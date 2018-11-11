@@ -3,6 +3,8 @@
   "extends": "airbnb",
   "rules": {
     "semi": "off",
+    "quotes": "off",
+    "react/no-unescaped-entities": "off",
     "import/prefer-default-export": "warn",
     "react/jsx-filename-extension": [
       1,
