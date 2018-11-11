@@ -12,18 +12,33 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-const { createServer } = require('http');
 const next = require('next');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
+const { createServer } = require('http');
+const { parse } = require('url');
+const { join } = require('path');
+
 const routes = require('./routes');
 
-const handler = routes.getRequestHandler(app);
+const handle = routes.getRequestHandler(app);
 app.prepare().then(() => {
-  createServer(handler).listen(port, (err) => {
+  const rootStaticFiles = [/^\/\w*icon.*\.(png|ico)/, /^\/manifest\.json/, /^\/browserconfig\.xml/];
+
+  createServer((req, res) => {
+    const parsedUrl = parse(req.url, true);
+
+    const isStaticFile = rootStaticFiles.reduce((isStaticFileYet, staticFileRE) => staticFileRE.test(parsedUrl.pathname) || isStaticFileYet, false);
+
+    if (isStaticFile) {
+      const path = join(__dirname, 'static', parsedUrl.pathname);
+      app.serveStatic(req, res, path);
+    } else {
+      handle(req, res, parsedUrl);
+    }
+  }).listen(port, (err) => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
   });
