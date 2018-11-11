@@ -6,10 +6,14 @@ import { createGlobalStyle } from 'styled-components';
 import Header from './Header';
 
 import colours from '../style-utils/colours';
+import { getFonts, fontStacks } from '../style-utils/fonts';
 
 const GlobalStyles = createGlobalStyle`
+  ${getFonts()};
+
   html {
     font-size: 10px;
+    font-family: ${fontStacks.serifRegular};
     margin: 0;
     padding: 0;
   }
