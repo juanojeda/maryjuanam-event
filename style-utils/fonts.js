@@ -2,7 +2,7 @@ import { fontFace } from 'polished';
 
 const fontPath = '/static/fonts/';
 
-const fontNames = {
+export const fontNames = {
   cursive: 'Dawning of a New Day',
   serifLight: 'Cormorant Infant Light',
   serifRegular: 'Cormorant Infant Regular',
@@ -37,9 +37,9 @@ const fontSerifBold = {
   fontWeight: 'bold',
 };
 
-export const getFonts = () => `
-  ${fontFace(fontCursive)};
-  ${fontFace(fontSerifLight)};
-  ${fontFace(fontSerifRegular)};
-  ${fontFace(fontSerifBold)};
-`;
+export const getFonts = () => [
+  { ...fontFace({ ...fontCursive, fileFormats: ['ttf'] }) },
+  { ...fontFace({ ...fontSerifLight, fileFormats: ['ttf'] }) },
+  { ...fontFace({ ...fontSerifRegular, fileFormats: ['ttf'] }) },
+  { ...fontFace({ ...fontSerifBold, fileFormats: ['ttf'] }) },
+];

@@ -10,7 +10,7 @@ export default class _App extends App {
     return (
       <>
         <Head>
-          <title>default title</title>
+          <title>Maryam &amp; Juan get hitched!</title>
           <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
           <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
           <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />

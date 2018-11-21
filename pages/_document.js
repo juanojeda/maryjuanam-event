@@ -1,4 +1,5 @@
-import Document from 'next/document';
+import React from 'react';
+import Document, { Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class _Document extends Document {
@@ -12,5 +13,16 @@ export default class _Document extends Document {
 
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps, styles: [...initialProps.styles, ...sheet.getStyleElement()] };
+  }
+
+  render() {
+    return (
+      <html lang="en">
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    );
   }
 }

@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { createGlobalStyle } from 'styled-components';
-
-import Header from './Header';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import colours from '../style-utils/colours';
 import { getFonts, fontStacks } from '../style-utils/fonts';
+import { gridBreakpoints } from '../style-utils/breakpoints';
 
 const GlobalStyles = createGlobalStyle`
   ${getFonts()};
@@ -16,21 +15,35 @@ const GlobalStyles = createGlobalStyle`
     font-family: ${fontStacks.serifRegular};
     margin: 0;
     padding: 0;
+    min-height: 100vh;
   }
 
   body {
     background: ${colours.body.bg};
     color: ${colours.body.text};
     font-size: 1.6rem;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
   }
+
+  #__next {
+    min-height: 100vh;
+  }
+
 `;
 
 const Layout = ({ children }) => (
-  <div>
-    <GlobalStyles />
-    <Header />
-    {children}
-  </div>
+  <ThemeProvider
+    theme={{
+      breakpoints: gridBreakpoints,
+    }}
+  >
+    <>
+      <GlobalStyles />
+      {children}
+    </>
+  </ThemeProvider>
 );
 
 Layout.propTypes = {
