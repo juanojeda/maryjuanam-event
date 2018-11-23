@@ -20,7 +20,7 @@ class SaveTheDate extends React.Component {
     return (
       <GridContainer>
         <Grid.Unit size={{ md: 5 / 12, lg: 7 / 12 }}>
-          <FeatureImage desaturate src="../static/images/juan_maryam_1.jpg" />
+          <FeatureImage desaturate src="../static/images/piggyback.jpg" />
         </Grid.Unit>
         <Grid.Unit size={{ md: 7 / 12, lg: 5 / 12 }}>
           <SaveTheDateContainer />
