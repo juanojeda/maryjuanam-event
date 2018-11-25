@@ -1,18 +1,32 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { fontNames } from '../style-utils/fonts';
 import colours from '../style-utils/colours';
 
 const darkOrLight = ['dark', 'light'];
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+
 const LogoWrapper = styled.figure`
+  animation: 500ms ${fadeIn} ease-in;
+  animation-delay: 550ms;
+  animation-fill-mode: forwards;
   display: block;
   margin: 0;
   padding: 5rem 0;
   text-align: center;
   width: 100%;
+  opacity: 0;
 `;
 
 const CursiveText = styled.span`
