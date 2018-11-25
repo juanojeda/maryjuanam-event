@@ -11,9 +11,12 @@ const baseStyles = css`
   color: ${colours.body.text};
   display: inline-block;
   font-family: ${fontNames.serifLight};
+  font-weight: 100;
   font-size: 2.5rem;
   line-height: 3rem;
-  font-weight: 100;
+  padding: 2rem 0;
+  text-align: center;
+  width: 100%;
 `;
 
 const Link = styled.a`
@@ -25,9 +28,10 @@ const Btn = styled.button`
 `;
 
 const Arrow = styled(ArrowSVG)`
-  height: 3rem;
+  height: 100%;
   padding: 0 3rem;
-  vertical-align: top;
+  vertical-align: middle;
+  width: 9rem;
 `;
 
 class Button extends PureComponent {
@@ -40,7 +44,7 @@ class Button extends PureComponent {
     const componentProps = type === 'link' ? { href: link, alt, ...buttonProps } : { onClick: action, ...buttonProps };
 
     return (
-      <Component {...componentProps}>
+      <Component {...{ ...componentProps }}>
         {text}
         <Arrow />
       </Component>
@@ -49,7 +53,8 @@ class Button extends PureComponent {
 }
 
 Button.propTypes = {
-  type: PropTypes.oneOf('button', 'link'),
+  className: PropTypes.string,
+  type: PropTypes.oneOf(['button', 'link']),
   text: PropTypes.string,
   action: PropTypes.func,
   link: PropTypes.string,
@@ -57,6 +62,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  className: null,
   type: 'link',
   text: '',
   action: () => {},

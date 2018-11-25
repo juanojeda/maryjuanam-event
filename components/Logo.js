@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { fontNames } from '../style-utils/fonts';
+import colours from '../style-utils/colours';
+
+const darkOrLight = ['dark', 'light'];
 
 const LogoWrapper = styled.figure`
   display: block;
@@ -13,6 +16,7 @@ const LogoWrapper = styled.figure`
 `;
 
 const CursiveText = styled.span`
+  color: ${({ theme }) => (theme === 'light' ? colours.body.text_light : colours.body.text)};
   font-family: ${fontNames.cursive};
   line-height: 120%;
   font-size: 3rem;
@@ -30,8 +34,8 @@ const Spacer = () => (
   </SmallSpace>
 );
 
-const LogoText = ({ fullNames }) => (fullNames ? (
-  <CursiveText>
+const LogoText = ({ fullNames, theme }) => (fullNames ? (
+  <CursiveText theme={theme}>
       Maryam Shekarforoush
     <br />
       and
@@ -39,7 +43,7 @@ const LogoText = ({ fullNames }) => (fullNames ? (
       Juan Ojeda
   </CursiveText>
 ) : (
-  <CursiveText>
+  <CursiveText theme={theme}>
       Maryam
     <Spacer />
       &amp;
@@ -48,12 +52,17 @@ const LogoText = ({ fullNames }) => (fullNames ? (
   </CursiveText>
 ));
 
+LogoText.propTypes = {
+  fullNames: PropTypes.bool.isRequired,
+  theme: PropTypes.oneOf(darkOrLight).isRequired,
+};
+
 class Logo extends PureComponent {
   render() {
-    const { fullNames, theme } = this.props;
+    const { fullNames, theme, className } = this.props;
     return (
-      <LogoWrapper>
-        <LogoText fullNames={fullNames} />
+      <LogoWrapper className={className}>
+        <LogoText theme={theme} fullNames={fullNames} />
       </LogoWrapper>
     );
   }
@@ -61,12 +70,14 @@ class Logo extends PureComponent {
 
 Logo.propTypes = {
   fullNames: PropTypes.bool,
-  theme: PropTypes.oneOf(['dark', 'light']),
+  theme: PropTypes.oneOf(darkOrLight),
+  className: PropTypes.string,
 };
 
 Logo.defaultProps = {
   fullNames: false,
   theme: 'dark',
+  className: '',
 };
 
 export default Logo;

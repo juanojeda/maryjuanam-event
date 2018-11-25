@@ -14,6 +14,7 @@ const colours = {
   body: {
     bg: tan,
     text: bark,
+    text_light: tan,
   },
 };
 
