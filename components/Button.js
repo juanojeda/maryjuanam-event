@@ -25,6 +25,9 @@ const Link = styled.a`
 `;
 const Btn = styled.button`
   ${baseStyles}
+  appearance: none;
+  background: transparent;
+  border: 0;
 `;
 
 const Arrow = styled(ArrowSVG)`

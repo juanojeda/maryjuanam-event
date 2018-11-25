@@ -31,6 +31,7 @@ const Image = styled.img`
   height: 100%;
   filter: ${({ desaturate }) => desaturate && 'grayscale(100%)'};
   object-fit: cover;
+  transition: 1000ms filter 500ms;
   width: 100%;
 `;
 

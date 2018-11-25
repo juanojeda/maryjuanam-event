@@ -32,6 +32,7 @@ class PageIndex extends React.Component {
   state = {
     isMobile: true,
     resizeHandlerId: '',
+    isSesameOpen: false,
   };
 
   componentDidMount() {
@@ -52,18 +53,35 @@ class PageIndex extends React.Component {
     this.setState({ isMobile });
   };
 
+  submitRSVPCode = (code) => {
+    console.log(code);
+  };
+
+  openSesame = () => {
+    this.setState({
+      isSesameOpen: true,
+    });
+  };
+
   render() {
-    const { isMobile } = this.state;
+    const { isMobile, isSesameOpen } = this.state;
     return (
       <GridContainer>
         <GridCell md={5} lg={7}>
           {isMobile && <StyledLogo fullNames theme="light" />}
-          <FeatureImage height={7} desaturate src="../static/images/srs-bsns.jpg" />
+          <FeatureImage height={7} desaturate={!isSesameOpen} src="../static/images/srs-bsns.jpg" />
         </GridCell>
         <GridCell md={7} lg={5}>
           <SplashContainer>
             {!isMobile && <Logo fullNames />}
-            <StyledButton />
+            {isSesameOpen ? (
+              <div>
+                Please enter the RSVP code
+                <StyledButton type="button" action={this.submitRSVPCode} />
+              </div>
+            ) : (
+              <StyledButton type="button" action={this.openSesame} />
+            )}
           </SplashContainer>
         </GridCell>
       </GridContainer>
