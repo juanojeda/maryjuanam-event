@@ -7,6 +7,7 @@ import colours from '../style-utils/colours';
 
 const ImageWrapper = styled.div`
   display: flex;
+  height: ${({ height }) => `${(height / 9) * 100}vh`};
   ${getBreakpoint('md')} {
     height: 100vh;
   }
@@ -19,7 +20,7 @@ const ImageWrapper = styled.div`
         height: 100%;
         width: 100%;
         background: ${colours.images.vignette};
-        opacity: 0.5;
+        opacity: 0.8;
         position: absolute;
         top: 0;
       }
@@ -35,9 +36,9 @@ const Image = styled.img`
 
 class FeatureImage extends PureComponent {
   render() {
-    const { src, desaturate } = this.props;
+    const { src, desaturate, height } = this.props;
     return (
-      <ImageWrapper desaturate={desaturate}>
+      <ImageWrapper height={height} desaturate={desaturate}>
         <Image desaturate={desaturate} src={src} />
       </ImageWrapper>
     );
@@ -45,11 +46,13 @@ class FeatureImage extends PureComponent {
 }
 
 FeatureImage.propTypes = {
+  height: PropTypes.number,
   src: PropTypes.string.isRequired,
   desaturate: PropTypes.bool,
 };
 
 FeatureImage.defaultProps = {
+  height: 3,
   desaturate: false,
 };
 

@@ -1,33 +1,18 @@
 import React from 'react';
 
-import Grid from 'styled-components-grid';
-import styled from 'styled-components';
-import withReduxSaga from '../lib/withReduxSaga';
-
+import { GridContainer, GridCell } from '../components/Grid';
 import FeatureImage from '../components/FeatureImage';
 import SaveTheDateContainer from '../containers/SaveTheDateContainer';
 
-const GridContainer = styled(Grid).attrs({
-  valign: { sm: 'stretch' },
-})`
-  height: 100%;
-`;
+const SaveTheDate = () => (
+  <GridContainer>
+    <GridCell md={5} lg={7}>
+      <FeatureImage height={3} desaturate src="../static/images/piggyback.jpg" />
+    </GridCell>
+    <GridCell md={7} lg={5}>
+      <SaveTheDateContainer />
+    </GridCell>
+  </GridContainer>
+);
 
-class SaveTheDate extends React.Component {
-  static async getInitialProps({ store }) {}
-
-  render() {
-    return (
-      <GridContainer>
-        <Grid.Unit size={{ md: 5 / 12, lg: 7 / 12 }}>
-          <FeatureImage desaturate src="../static/images/piggyback.jpg" />
-        </Grid.Unit>
-        <Grid.Unit size={{ md: 7 / 12, lg: 5 / 12 }}>
-          <SaveTheDateContainer />
-        </Grid.Unit>
-      </GridContainer>
-    );
-  }
-}
-
-export default withReduxSaga(SaveTheDate);
+export default SaveTheDate;

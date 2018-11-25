@@ -10,6 +10,10 @@ import { gridBreakpoints } from '../style-utils/breakpoints';
 const GlobalStyles = createGlobalStyle`
   ${getFonts()};
 
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 10px;
     font-family: ${fontStacks.serifRegular};
