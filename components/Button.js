@@ -33,11 +33,11 @@ const Arrow = styled(ArrowSVG)`
 class Button extends PureComponent {
   render() {
     const {
-      type, text, action, link, alt,
+      type, text, action, link, alt, ...buttonProps
     } = this.props;
     const Component = type === 'link' ? Link : Btn;
 
-    const componentProps = type === 'link' ? { href: link, alt } : { onClick: action };
+    const componentProps = type === 'link' ? { href: link, alt, ...buttonProps } : { onClick: action, ...buttonProps };
 
     return (
       <Component {...componentProps}>

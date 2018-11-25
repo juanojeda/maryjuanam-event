@@ -53,7 +53,7 @@ class SaveTheDateContainer extends PureComponent {
           </Paragraph>
           <Paragraph>Stay tuned for formal invitations.</Paragraph>
           <ButtonContainer>
-            <Button text="Save the date" link="/static/savethedate.ics" />
+            <Button target="_blank" text="Save the date" link="/static/savethedate.ics" />
           </ButtonContainer>
         </Body>
       </>
