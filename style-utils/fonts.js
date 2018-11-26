@@ -11,7 +11,9 @@ export const fontNames = {
 
 export const fontStacks = {
   cursive: `${fontNames.cursive}, cursive`,
-  serif: `${fontNames.serif}, serif`,
+  serifLight: `${fontNames.serifLight}, serif`,
+  serifRegular: `${fontNames.serifRegular}, serif`,
+  serifBold: `${fontNames.serifBold}, serif`,
 };
 
 const fontCursive = {
