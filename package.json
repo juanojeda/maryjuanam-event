@@ -10,7 +10,7 @@
     "lint:styles": "stylelint ./lib",
     "lint:js": "eslint ./lib ./components ./netlify ./pages",
     "netlify:build": "netlify-lambda build ./netlify",
-    "netlify:serve": "netlify-lambda serve ./netlify"
+    "netlify:serve": "PASS=testtest netlify-lambda serve ./netlify"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",
@@ -24,6 +24,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "http-proxy": "^1.17.0",
     "jest": "^23.6.0",
     "jest-enzyme": "^6.1.2",
     "react-addons-test-utils": "^15.6.2",

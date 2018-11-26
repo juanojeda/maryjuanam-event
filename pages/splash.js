@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Router from 'next/router';
 
 import debounce from 'lodash/debounce';
 
@@ -35,6 +36,9 @@ class PageIndex extends React.Component {
     isMobile: true,
     resizeHandlerId: '',
     isSesameOpen: false,
+    isSesameLoading: false,
+    inputValue: '',
+    isSesameError: false,
   };
 
   componentDidMount() {
@@ -47,7 +51,7 @@ class PageIndex extends React.Component {
 
   componentWillUnmount() {
     const { resizeHandlerId } = this.state;
-    window.removeEventListener(resizeHandlerId);
+    window.removeEventListener('resize', resizeHandlerId);
   }
 
   resizeHandler = () => {
@@ -55,8 +59,39 @@ class PageIndex extends React.Component {
     this.setState({ isMobile });
   };
 
-  submitRSVPCode = (code) => {
-    console.log(code);
+  submitRSVPCode = async (e) => {
+    e.preventDefault();
+    const { inputValue } = this.state;
+    const payload = {
+      pass: inputValue,
+    };
+
+    this.setState({
+      isSesameLoading: true,
+    });
+
+    const isAuthed = await fetch('/api/auth', {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      body: JSON.stringify(payload),
+    }).then(response => response.ok);
+
+    if (!isAuthed) {
+      this.setState({
+        isSesameLoading: false,
+        isSesameError: true,
+      });
+    } else {
+      Router.push('/home');
+    }
+  };
+
+  updateInputValue = (e) => {
+    this.setState({
+      inputValue: e.target.value,
+      isSesameError: false,
+    });
   };
 
   openSesame = () => {
@@ -66,7 +101,9 @@ class PageIndex extends React.Component {
   };
 
   render() {
-    const { isMobile, isSesameOpen } = this.state;
+    const {
+      isMobile, isSesameOpen, isSesameLoading, inputValue, isSesameError,
+    } = this.state;
     return (
       <GridContainer>
         <GridCell md={5} lg={7}>
@@ -78,8 +115,12 @@ class PageIndex extends React.Component {
             {!isMobile && <Logo fullNames />}
             {isSesameOpen ? (
               <RSVPInput
+                inputValue={inputValue}
+                updateInputValue={this.updateInputValue}
                 inputPlaceholder="Please enter the RSVP code"
                 submitCode={this.submitRSVPCode}
+                loading={isSesameLoading}
+                error={isSesameError}
               />
             ) : (
               <StyledButton type="button" action={this.openSesame} />

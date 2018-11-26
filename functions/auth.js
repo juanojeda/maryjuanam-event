@@ -76,6 +76,8 @@ var handler = function handler(event, context, callback) {
   var _JSON$parse = JSON.parse(event.body),
       pass = _JSON$parse.pass;
 
+  console.log(PASS, pass);
+
   if (PASS === pass) {
     callback(null, {
       statusCode: 200,
