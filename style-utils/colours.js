@@ -16,6 +16,9 @@ const colours = {
     text: bark,
     text_light: tan,
   },
+  forms: {
+    borderColor: bark,
+  },
 };
 
 export default colours;

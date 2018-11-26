@@ -11,6 +11,7 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 
 import { gridBreakpoints } from '../style-utils/breakpoints';
+import RSVPInput from '../components/RSVPInput';
 
 const StyledLogo = styled(Logo)`
   position: absolute;
@@ -24,6 +25,7 @@ const SplashContainer = styled.div`
   justify-content: center;
   flex-flow: column;
   height: 100%;
+  padding: 4rem;
 `;
 
 class PageIndex extends React.Component {
@@ -68,17 +70,17 @@ class PageIndex extends React.Component {
     return (
       <GridContainer>
         <GridCell md={5} lg={7}>
-          {isMobile && <StyledLogo fullNames theme="light" />}
+          {isMobile && <StyledLogo fullNames theme={isSesameOpen ? 'dark' : 'light'} />}
           <FeatureImage height={7} desaturate={!isSesameOpen} src="../static/images/srs-bsns.jpg" />
         </GridCell>
         <GridCell md={7} lg={5}>
           <SplashContainer>
             {!isMobile && <Logo fullNames />}
             {isSesameOpen ? (
-              <div>
-                Please enter the RSVP code
-                <StyledButton type="button" action={this.submitRSVPCode} />
-              </div>
+              <RSVPInput
+                inputPlaceholder="Please enter the RSVP code"
+                submitCode={this.submitRSVPCode}
+              />
             ) : (
               <StyledButton type="button" action={this.openSesame} />
             )}
