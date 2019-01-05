@@ -18,10 +18,9 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const { createServer } = require('http');
-const { createProxyServer } = require('http-proxy');
 const { parse } = require('url');
 const { join } = require('path');
-
+const { createProxyServer } = require('http-proxy');
 const routes = require('./routes');
 
 const handle = routes.getRequestHandler(app);

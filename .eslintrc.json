@@ -7,6 +7,7 @@
     "quotes": "off",
     "react/no-unescaped-entities": "off",
     "import/prefer-default-export": "warn",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "react/jsx-filename-extension": [
       1,
       {

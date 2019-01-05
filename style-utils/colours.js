@@ -3,6 +3,8 @@ import { transparentize } from 'polished';
 const tan = '#F5ECE6';
 const bark = '#481210';
 const black = '#100b0a';
+const berry = '#DB3630';
+const grass = '#80C23E';
 
 const colours = {
   images: {
@@ -18,6 +20,8 @@ const colours = {
   },
   forms: {
     borderColor: bark,
+    error: berry,
+    success: grass,
   },
 };
 
