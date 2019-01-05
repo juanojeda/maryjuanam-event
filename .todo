@@ -1,4 +1,6 @@
 # Things to do
+- figure out why _app.js and _document.js aren't returning the same styles
+
 
 # Things to look at
 - https://jamie.build/react-markings.html Markdown (for the FAQs?)
