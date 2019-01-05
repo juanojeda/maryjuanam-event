@@ -57,7 +57,7 @@ class Button extends PureComponent {
 
 Button.propTypes = {
   className: PropTypes.string,
-  type: PropTypes.oneOf(['button', 'link']),
+  type: PropTypes.oneOf(['button', 'link', 'submit']),
   text: PropTypes.string,
   action: PropTypes.func,
   link: PropTypes.string,

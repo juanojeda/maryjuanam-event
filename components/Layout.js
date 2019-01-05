@@ -37,11 +37,12 @@ const GlobalStyles = createGlobalStyle`
 
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children }, ...props) => (
   <ThemeProvider
     theme={{
       breakpoints: gridBreakpoints,
     }}
+    {...props}
   >
     <>
       <GlobalStyles />

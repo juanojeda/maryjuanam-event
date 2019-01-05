@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Router from 'next/router';
 
 import debounce from 'lodash/debounce';
+import ls from 'local-storage';
 
 import { GridContainer, GridCell } from '../components/Grid';
-import withReduxSaga from '../lib/withReduxSaga';
 
 import FeatureImage from '../components/FeatureImage';
 import Logo from '../components/Logo';
@@ -30,8 +30,6 @@ const SplashContainer = styled.div`
 `;
 
 class PageIndex extends React.Component {
-  static async getInitialProps({ store }) {}
-
   state = {
     isMobile: true,
     resizeHandlerId: '',
@@ -83,6 +81,7 @@ class PageIndex extends React.Component {
         isSesameError: true,
       });
     } else {
+      ls('IS_SESAME_UNLOCKED', true);
       Router.push('/home');
     }
   };
@@ -132,4 +131,4 @@ class PageIndex extends React.Component {
   }
 }
 
-export default withReduxSaga(PageIndex);
+export default PageIndex;
