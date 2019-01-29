@@ -2,7 +2,7 @@
   "name": "maryam-juan-wedding",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "yarn netlify:serve & node server.js",
     "build": "next build",
     "build:prod": "next build && next export",
     "start": "NODE_ENV=production node server.js",

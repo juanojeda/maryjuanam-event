@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
-import { compose, withProps, nest } from 'recompose';
+import React from 'react';
 
-import withSesameLock from '../hoc/withSesameLock';
-import withLoggedInLayout from '../hoc/withLoggedInLayout';
+import WithSesameLock from '../hoc/withSesameLock';
+import WithLoggedInLayout from '../hoc/withLoggedInLayout';
 
-class Home extends Component {
-  render(props) {
-    return <div>Logged In</div>;
-  }
-}
+const Home = props => <div {...props}>Logged In</div>;
 
-const withLayout = nest(withLoggedInLayout, Home);
-const withNavProps = withProps({ navKey: 'home', title: 'home' });
+const WithLayout = props => (
+  <WithLoggedInLayout {...props}>
+    <Home {...props} />
+  </WithLoggedInLayout>
+);
 
-const HomePage = withSesameLock(withNavProps(withLayout));
+const HomePage = props => (
+  <WithSesameLock>
+    <WithLayout navKey="home" title="home" />
+  </WithSesameLock>
+);
 
 export default HomePage;
