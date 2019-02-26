@@ -18,6 +18,10 @@ const colours = {
     text: bark,
     text_light: tan,
   },
+  navigation: {
+    text: bark,
+    activeBorderColor: bark,
+  },
   forms: {
     borderColor: bark,
     error: berry,
