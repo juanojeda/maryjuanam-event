@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 
-import { fontNames } from '../style-utils/fonts';
+import { fontNames } from '../utils/style-utils/fonts';
 
 import KnotSVG from '../static/knot.svg';
 

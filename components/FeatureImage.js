@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { getBreakpoint } from '../style-utils/breakpoints';
-import colours from '../style-utils/colours';
+import { getBreakpoint } from '../utils/style-utils/breakpoints';
+import colours from '../utils/style-utils/colours';
 
 const ImageWrapper = styled.div`
   display: flex;

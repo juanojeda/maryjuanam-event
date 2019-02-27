@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 
-import colours from '../style-utils/colours';
-import { getBreakpoint } from '../style-utils/breakpoints';
-import { fontNames } from '../style-utils/fonts';
+import colours from '../utils/style-utils/colours';
+import { getBreakpoint } from '../utils/style-utils/breakpoints';
+import { fontNames } from '../utils/style-utils/fonts';
 
 const navBreakPoint = getBreakpoint('zero', 'md');
 const isActive = ({ targetPage, currentPage }) => currentPage === targetPage;

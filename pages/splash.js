@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Router from 'next/router';
 
 import debounce from 'lodash/debounce';
+import get from 'lodash/get';
 import ls from 'local-storage';
 
 import { GridContainer, GridCell } from '../components/Grid';
@@ -11,8 +12,9 @@ import FeatureImage from '../components/FeatureImage';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 
-import { gridBreakpoints } from '../style-utils/breakpoints';
+import { gridBreakpoints } from '../utils/style-utils/breakpoints';
 import RSVPInput from '../components/RSVPInput';
+import { apiUrl } from '../utils/constants';
 
 const StyledLogo = styled(Logo)`
   position: absolute;
@@ -57,6 +59,13 @@ class PageIndex extends React.Component {
     this.setState({ isMobile });
   };
 
+  getAPIEndpoint = () => {
+    const href = get(window, 'location.href', '');
+    const isDev = href.indexOf('localhost') < -1;
+
+    return isDev ? apiUrl.dev : apiUrl.prod;
+  };
+
   submitRSVPCode = async (e) => {
     e.preventDefault();
     const { inputValue } = this.state;
@@ -68,7 +77,7 @@ class PageIndex extends React.Component {
       isSesameLoading: true,
     });
 
-    const isAuthed = await fetch('/api/auth', {
+    const isAuthed = await fetch(`${this.getAPIEndpoint()}/auth`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
