@@ -61,7 +61,7 @@ class PageIndex extends React.Component {
 
   getAPIEndpoint = () => {
     const href = get(window, 'location.href', '');
-    const isDev = href.indexOf('localhost') < -1;
+    const isDev = href.indexOf('localhost') > -1;
 
     return isDev ? apiUrl.dev : apiUrl.prod;
   };

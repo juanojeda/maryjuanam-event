@@ -37,9 +37,11 @@ const Image = styled.img`
 
 class FeatureImage extends PureComponent {
   render() {
-    const { src, desaturate, height } = this.props;
+    const {
+      src, desaturate, height, className,
+    } = this.props;
     return (
-      <ImageWrapper height={height} desaturate={desaturate}>
+      <ImageWrapper className={className} height={height} desaturate={desaturate}>
         <Image desaturate={desaturate} src={src} />
       </ImageWrapper>
     );
