@@ -22,8 +22,12 @@ GridContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export const GridCell = ({ children, md, lg }) => (
-  <StyledCell size={{ md: md / 12, lg: lg / 12 }}>{children}</StyledCell>
+export const GridCell = ({
+  children, md, lg, className,
+}) => (
+  <StyledCell className={className} size={{ md: md / 12, lg: lg / 12 }}>
+    {children}
+  </StyledCell>
 );
 
 GridCell.propTypes = {
