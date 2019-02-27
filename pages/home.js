@@ -7,7 +7,7 @@ import { GridContainer, GridCell } from '../components/Grid';
 import FeatureImage from '../components/FeatureImage';
 import Heading from '../components/Heading';
 import Paragraph from '../components/Paragraph';
-import { getBreakpoint } from '../style-utils/breakpoints';
+import { getBreakpoint } from '../utils/style-utils/breakpoints';
 
 const OrderedCell = styled(GridCell)`
   ${getBreakpoint('md')} {

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import ArrowSVG from '../static/arrow.svg';
 
-import colours from '../style-utils/colours';
-import { fontNames } from '../style-utils/fonts';
+import colours from '../utils/style-utils/colours';
+import { fontNames } from '../utils/style-utils/fonts';
 
 const baseStyles = css`
   color: ${colours.body.text};

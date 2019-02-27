@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-import colours from '../style-utils/colours';
-import { getFonts, fontStacks } from '../style-utils/fonts';
-import { gridBreakpoints } from '../style-utils/breakpoints';
+import colours from '../utils/style-utils/colours';
+import { getFonts, fontStacks } from '../utils/style-utils/fonts';
+import { gridBreakpoints } from '../utils/style-utils/breakpoints';
 
 const GlobalStyles = createGlobalStyle`
   ${getFonts()};

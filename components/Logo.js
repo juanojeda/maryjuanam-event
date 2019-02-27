@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
-import { fontNames } from '../style-utils/fonts';
-import colours from '../style-utils/colours';
+import { fontNames } from '../utils/style-utils/fonts';
+import colours from '../utils/style-utils/colours';
 
 const darkOrLight = ['dark', 'light'];
 

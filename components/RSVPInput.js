@@ -4,8 +4,8 @@ import styled, { keyframes, css } from 'styled-components';
 
 import Button from './Button';
 
-import { fontStacks } from '../style-utils/fonts';
-import colours from '../style-utils/colours';
+import { fontStacks } from '../utils/style-utils/fonts';
+import colours from '../utils/style-utils/colours';
 
 const RSVPInputContainer = styled.form`
   display: flex;
