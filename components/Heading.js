@@ -30,8 +30,8 @@ const StyledHeading = styled.h1.attrs({
   font-size: ${({ level }) => getProp('fontSize', level)};
   font-weight: ${({ level }) => getProp('fontWeight', level)};
   line-height: ${({ level }) => getProp('lineHeight', level)};
-  margin-top: ${({ level }) => getProp('lineHeight', level)};
-  margin-bottom: ${({ level }) => getProp('lineHeight', level)};
+  margin-top: ${({ level }) => getProp('marginTop', level)};
+  margin-bottom: ${({ level }) => getProp('marginBottom', level)};
 `;
 
 export default ({ level, children, ...props }) => (

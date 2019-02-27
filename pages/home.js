@@ -9,6 +9,13 @@ import Heading from '../components/Heading';
 import Paragraph from '../components/Paragraph';
 import { getBreakpoint } from '../utils/style-utils/breakpoints';
 
+const StickyFeatureImage = styled(FeatureImage)`
+  ${getBreakpoint('md')} {
+    position: fixed;
+    top: 0;
+  }
+`;
+
 const OrderedCell = styled(GridCell)`
   ${getBreakpoint('md')} {
     padding-top: ${({ content }) => (content === 'copy' ? '12.5rem' : 0)};
@@ -26,7 +33,7 @@ const InfoSection = styled.div`
 const Home = props => (
   <GridContainer>
     <OrderedCell content="img" md={5} lg={5}>
-      <FeatureImage src="../static/images/confetti.jpg" />
+      <StickyFeatureImage src="../static/images/confetti.jpg" />
     </OrderedCell>
     <OrderedCell content="copy" md={7} lg={7}>
       <InfoSection>
