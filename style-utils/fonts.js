@@ -24,19 +24,19 @@ const fontCursive = {
 const fontSerifRegular = {
   fontFamily: `${fontNames.serifLight}`,
   fontFilePath: `${fontPath}CormorantInfant-Regular`,
-  fontWeight: 'regular',
+  fontWeight: 400,
 };
 
 const fontSerifLight = {
   fontFamily: `${fontNames.serifRegular}`,
   fontFilePath: `${fontPath}CormorantInfant-Light`,
-  fontWeight: 'light',
+  fontWeight: 200,
 };
 
 const fontSerifBold = {
   fontFamily: `${fontNames.serifBold}`,
   fontFilePath: `${fontPath}CormorantInfant-SemiBold`,
-  fontWeight: 'bold',
+  fontWeight: 600,
 };
 
 export const getFonts = () => [
