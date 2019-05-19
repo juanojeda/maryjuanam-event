@@ -1,14 +1,28 @@
 
 [
   {
+    "id": "4JmSw3ssU",
     "guests": [
-      {"guestName":"Daniel Napoleoni", "rsvp": null },
-      {"guestName": "Rosemarie Walshaw", "rsvp": null}
+      {"guestName":"Daniel Napoleoni" },
+      {"guestName": "Rosemarie Walshaw"}
     ]
   },
   {
+    "id": "4J4Uv2oiU",
     "guests": [
-      {"guestName":"Sharath Nagaraj", "rsvp": null}
+      {"guestName":"Sharath Nagaraj"}
+    ]
+  },
+  {
+    "id": "NkWww2jjI",
+    "guests": [
+      {"guestName":"Guest 1", "rsvp": true}
+    ]
+  },
+  {
+    "id": "V1CdD3siU",
+    "guests": [
+      {"guestName":"Guest 2", "rsvp": false}
     ]
   }
 ]

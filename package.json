@@ -9,8 +9,8 @@
     "test": "NODE_ENV=test jest",
     "lint:styles": "stylelint ./lib",
     "lint:js": "eslint ./lib ./components ./netlify ./pages",
-    "netlify:build": "netlify-lambda build ./netlify",
-    "netlify:serve": "PASS=testtest netlify-lambda serve ./netlify"
+    "netlify:build": "netlify-lambda build --config ./netlify/config.js ./netlify",
+    "netlify:serve": "PASS=testtest netlify-lambda serve --config ./netlify/config.js ./netlify"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",
@@ -46,6 +46,7 @@
     "concurrently": "^4.1.0",
     "es6-promise": "^4.1.1",
     "express": "^4.16.4",
+    "firebase-admin": "^7.3.0",
     "graphql": "^0.11.7",
     "graphql-anywhere": "^4.0.2",
     "graphql-tag": "^2.5.0",
@@ -59,8 +60,9 @@
     "next-routes": "^1.2.0",
     "polished": "^2.3.0",
     "prop-types": "^15.6.0",
-    "react": "^16.5.2",
+    "react": "^16.8.6",
     "react-apollo": "^2.0.0",
+    "react-autosuggest": "^9.4.3",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.0",
     "recompose": "^0.30.0",
@@ -68,7 +70,8 @@
     "redux-devtools-extension": "^2.13.5",
     "redux-saga": "^0.16.0",
     "styled-components": "^4.0.3",
-    "styled-components-grid": "^2.2.1"
+    "styled-components-grid": "^2.2.1",
+    "webpack-node-externals": "^1.7.2"
   },
   "author": "",
   "license": "ISC"

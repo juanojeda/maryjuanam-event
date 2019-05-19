@@ -7,7 +7,7 @@ import Button from './Button';
 import { fontStacks } from '../utils/style-utils/fonts';
 import colours from '../utils/style-utils/colours';
 
-const RSVPInputContainer = styled.form`
+const AuthInputContainer = styled.form`
   display: flex;
   justify-content: center;
   position: relative;
@@ -83,7 +83,7 @@ const ErrorMessage = styled.div`
   width: 100%;
 `;
 
-class RSVPInput extends PureComponent {
+class AuthInput extends PureComponent {
   handleSubmit = (e) => {
     const { submitCode } = this.props;
     submitCode(e);
@@ -97,7 +97,7 @@ class RSVPInput extends PureComponent {
     return loading ? (
       <Loading>loading...</Loading>
     ) : (
-      <RSVPInputContainer>
+      <AuthInputContainer>
         <StyledInput
           error={error}
           value={inputValue}
@@ -107,12 +107,12 @@ class RSVPInput extends PureComponent {
         />
         <StyledButton type="submit" onClick={this.handleSubmit} />
         {error && <ErrorMessage>The password is incorrect. Please try again</ErrorMessage>}
-      </RSVPInputContainer>
+      </AuthInputContainer>
     );
   }
 }
 
-RSVPInput.propTypes = {
+AuthInput.propTypes = {
   error: PropTypes.bool,
   inputValue: PropTypes.string,
   inputPlaceholder: PropTypes.string,
@@ -121,11 +121,11 @@ RSVPInput.propTypes = {
   submitCode: PropTypes.func.isRequired,
 };
 
-RSVPInput.defaultProps = {
+AuthInput.defaultProps = {
   error: false,
   loading: false,
   inputValue: '',
   inputPlaceholder: '',
 };
 
-export default RSVPInput;
+export default AuthInput;

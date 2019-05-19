@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Router from 'next/router';
 
 import debounce from 'lodash/debounce';
-import get from 'lodash/get';
 import ls from 'local-storage';
 
 import { GridContainer, GridCell } from '../components/Grid';
@@ -13,8 +12,8 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 
 import { gridBreakpoints } from '../utils/style-utils/breakpoints';
-import RSVPInput from '../components/RSVPInput';
-import { apiUrl } from '../utils/constants';
+import AuthInput from '../components/AuthInput';
+import { getAPIEndpoint } from '../utils/api';
 
 const StyledLogo = styled(Logo)`
   position: absolute;
@@ -59,13 +58,6 @@ class PageIndex extends React.Component {
     this.setState({ isMobile });
   };
 
-  getAPIEndpoint = () => {
-    const href = get(window, 'location.href', '');
-    const isDev = href.indexOf('localhost') > -1;
-
-    return isDev ? apiUrl.dev : apiUrl.prod;
-  };
-
   submitRSVPCode = async (e) => {
     e.preventDefault();
     const { inputValue } = this.state;
@@ -77,7 +69,7 @@ class PageIndex extends React.Component {
       isSesameLoading: true,
     });
 
-    const isAuthed = await fetch(`${this.getAPIEndpoint()}/auth`, {
+    const isAuthed = await fetch(`${getAPIEndpoint()}/auth`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
@@ -122,7 +114,7 @@ class PageIndex extends React.Component {
           <SplashContainer>
             {!isMobile && <Logo fullNames />}
             {isSesameOpen ? (
-              <RSVPInput
+              <AuthInput
                 inputValue={inputValue}
                 updateInputValue={this.updateInputValue}
                 inputPlaceholder="Please enter the RSVP code"
