@@ -3,6 +3,8 @@ import devenv from './getEnv';
 
 const env = process.env.NODE_ENV === 'production' ? process.env : devenv;
 
+console.log(env);
+
 const firebaseKey = {
   type: env.FIREBASE_ACC_TYPE,
   project_id: env.FIREBASE_PROJECT_ID,
