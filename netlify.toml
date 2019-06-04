@@ -1,3 +1,3 @@
 [build]
   functions = "./functions"
-  command = "sed -i s/API_KEY_PLACEHOLDER/$API_KEY/g netlify.toml && yarn netlify:build && yarn build:prod"
+  command = "sed -i s/API_KEY_PLACEHOLDER/$API_KEY/g netlify.toml && npm rebuild && yarn netlify:build && yarn build:prod"
