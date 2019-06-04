@@ -16,9 +16,12 @@ const firebaseKey = {
   client_x509_cert_url: env.FIREBASE_CLIENT_X509_CERT_URL,
 };
 
-admin.initializeApp({
-  credential: admin.credential.cert(firebaseKey),
-});
+if (!admin.apps.length) {
+  console.log('test');
+  admin.initializeApp({
+    credential: admin.credential.cert(firebaseKey),
+  });
+}
 
 const firebaseDB = admin.firestore();
 
