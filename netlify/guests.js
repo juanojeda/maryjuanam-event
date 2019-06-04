@@ -14,7 +14,7 @@ const handler = async function handler(event, context) {
     };
   } catch (err) {
     console.log('Error getting documents', err);
-    return err;
+    throw new Error(err);
   }
 };
 
