@@ -1,4 +1,4 @@
-import firebaseDB from '../utils/firebase';
+import firebaseDB from './firebase';
 
 const handler = async function handler(event, context) {
   try {

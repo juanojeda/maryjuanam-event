@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import devenv from './getEnv';
+import devenv from '../utils/getEnv';
 
 const env = process.env.NODE_ENV === 'production' ? process.env : devenv;
 
