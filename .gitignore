@@ -133,3 +133,4 @@ db-import
 
 functions/*
 !functions/.gitfolder
+!functions/.babelrc
