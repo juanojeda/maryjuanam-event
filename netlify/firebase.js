@@ -1,7 +1,14 @@
 import admin from 'firebase-admin';
-import devenv from '../utils/getEnv';
 
-const env = process.env.NODE_ENV === 'production' ? process.env : devenv;
+let env;
+
+if (!process.env.NODE_ENV !== 'production') {
+  env = require('../utils/getEnv').default;
+} else {
+  env = process.env;
+}
+
+console.log(`~~~~~~~~~~ ENV ~~~~~~~~~~ \n`, env);
 
 const firebaseKey = {
   type: env.FIREBASE_ACC_TYPE,
