@@ -9,7 +9,7 @@
     "test": "NODE_ENV=test jest",
     "lint:styles": "stylelint ./lib",
     "lint:js": "eslint ./lib ./components ./netlify ./pages",
-    "netlify:build": "netlify-lambda build --config ./netlify/config.js ./netlify",
+    "netlify:build": "netlify-lambda build --config ./netlify/config.js ./netlify --babelrc false" ,
     "netlify:serve": "PASS=testtest netlify-lambda serve --config ./netlify/config.js ./netlify"
   },
   "devDependencies": {
