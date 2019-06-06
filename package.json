@@ -35,7 +35,6 @@
     "stylelint-processor-styled-components": "^1.4.0"
   },
   "dependencies": {
-    "dotenv": "^8.0.0",
     "@babel/core": "^7.0.0-0",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-client": "^2.4.2",
@@ -45,6 +44,7 @@
     "babel-plugin-import-static-files": "^1.0.4",
     "babel-plugin-inline-react-svg": "^1.0.1",
     "concurrently": "^4.1.0",
+    "dotenv": "^8.0.0",
     "es6-promise": "^4.1.1",
     "express": "^4.16.4",
     "firebase-admin": "^7.3.0",

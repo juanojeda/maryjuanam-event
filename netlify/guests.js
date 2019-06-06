@@ -7,6 +7,8 @@ const handler = async function handler(event, context) {
 
     guestsDB.forEach(doc => guests.push(doc.data()));
 
+    console.log(`returning ${guests.length} entries`);
+
     return {
       statusCode: 200,
       body: JSON.stringify(guests),
@@ -14,7 +16,7 @@ const handler = async function handler(event, context) {
     };
   } catch (err) {
     console.log('Error getting documents', err);
-    throw new Error(err);
+    return new Error(err);
   }
 };
 
