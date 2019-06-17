@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes, css } from 'styled-components';
+import styled from 'styled-components';
 
-import Autosuggest from 'react-autosuggest';
 import Button from './Button';
+import GuestSuggester from './GuestSuggester';
+import { GridContainer, GridCell } from './Grid';
 
-import { fontStacks } from '../utils/style-utils/fonts';
-import colours from '../utils/style-utils/colours';
+const ButtonContainer = styled(GridContainer)`
+  margin-top: 2rem;
+`;
+
+const RSVPContainer = styled.div``;
 
 const clearSuggestions = () => {};
 
 const getGuestValue = guest => guest.guest_name;
-
-const renderSuggestion = guest => <div>{guest.guest_name}</div>;
 
 const filterGuests = (val, list) => {
   const inputValue = val.trim().toLowerCase();
@@ -46,16 +48,23 @@ const RSVPMachine = ({ guestList }) => {
 
   return (
     guestList.length > 0 && (
-      <div>
-        <Autosuggest
+      <RSVPContainer>
+        <GuestSuggester
           suggestions={suggestions}
           onSuggestionsFetchRequested={requestFetchSuggestions}
           onSuggestionsClearRequested={clearSuggestions}
           getSuggestionValue={getGuestValue}
-          renderSuggestion={renderSuggestion}
           inputProps={inputProps}
         />
-      </div>
+        <ButtonContainer>
+          <GridCell>
+            <Button variant="primary" text="I do" />
+          </GridCell>
+          <GridCell>
+            <Button text="I can't" />
+          </GridCell>
+        </ButtonContainer>
+      </RSVPContainer>
     )
   );
 };

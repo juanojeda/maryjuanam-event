@@ -7,8 +7,33 @@ import ArrowSVG from '../static/arrow.svg';
 import colours from '../utils/style-utils/colours';
 import { fontNames } from '../utils/style-utils/fonts';
 
-const baseStyles = css`
-  color: ${colours.body.text};
+const Arrow = styled(ArrowSVG)`
+  fill: currentColor;
+  height: 100%;
+  stroke: currentColor;
+  padding: 0 3rem;
+  vertical-align: middle;
+  width: 9rem;
+`;
+
+const buttonVariants = {
+  primary: css`
+    background: ${colours.button.primary.background};
+    color: ${colours.button.primary.color};
+    ${Arrow} {
+      padding-right: 0;
+      width: 6rem;
+    }
+  `,
+  hollow: css`
+    background: ${colours.button.hollow.background};
+    color: ${colours.button.hollow.color};
+  `,
+};
+
+const baseStyles = variant => css`
+  ${({ variant }) => buttonVariants[variant]}
+
   display: inline-block;
   font-family: ${fontNames.serifLight};
   font-weight: 100;
@@ -20,21 +45,16 @@ const baseStyles = css`
 `;
 
 const Link = styled.a`
-  ${baseStyles};
+  ${({ variant }) => baseStyles(variant)};
+
   text-decoration: none;
 `;
 const Btn = styled.button`
-  ${baseStyles}
+  ${({ variant }) => baseStyles(variant)};
+
   appearance: none;
   background: transparent;
   border: 0;
-`;
-
-const Arrow = styled(ArrowSVG)`
-  height: 100%;
-  padding: 0 3rem;
-  vertical-align: middle;
-  width: 9rem;
 `;
 
 class Button extends PureComponent {
@@ -58,6 +78,7 @@ class Button extends PureComponent {
 Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.oneOf(['button', 'link', 'submit']),
+  variant: PropTypes.oneOf(['primary', 'hollow']),
   text: PropTypes.string,
   action: PropTypes.func,
   link: PropTypes.string,
@@ -67,6 +88,7 @@ Button.propTypes = {
 Button.defaultProps = {
   className: null,
   type: 'link',
+  variant: 'hollow',
   text: '',
   action: () => {},
   link: '',

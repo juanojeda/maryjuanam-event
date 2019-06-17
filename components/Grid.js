@@ -14,8 +14,10 @@ const StyledCell = styled(Grid.Unit)`
   align-items: center;
 `;
 
-export const GridContainer = ({ children }) => (
-  <StyledContainer valign={{ sm: 'stretch' }}>{children}</StyledContainer>
+export const GridContainer = ({ children, className }) => (
+  <StyledContainer className={className} valign={{ sm: 'stretch' }}>
+    {children}
+  </StyledContainer>
 );
 
 GridContainer.propTypes = {
