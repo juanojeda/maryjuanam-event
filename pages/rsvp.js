@@ -43,8 +43,17 @@ const fetchAndSetGuests = async (setGuests) => {
   return setGuests(guestList);
 };
 
-const submitRSVPs = (RSVPs) => {
-  console.log(RSVPs);
+const submitRSVP = async (guest, response) => {
+  try {
+    await fetch(`${getAPIEndpoint()}/rsvp`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      body: JSON.stringify({ guest, response }),
+    });
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 const Rsvp = () => {
@@ -68,7 +77,7 @@ const Rsvp = () => {
             let us know if you can make it.
           </Paragraph>
 
-          <RSVPMachine guestList={guests} submitRSVPs={submitRSVPs} />
+          <RSVPMachine guestList={guests} submitRSVP={submitRSVP} />
         </InfoSection>
       </OrderedCell>
     </GridContainer>
@@ -81,7 +90,7 @@ const WithLayout = props => (
   </WithLoggedInLayout>
 );
 
-const RsvpPage = props => (
+const RsvpPage = () => (
   <WithSesameLock>
     <WithLayout navKey="rsvp" title="rsvp" />
   </WithSesameLock>

@@ -11,9 +11,12 @@ const Arrow = styled(ArrowSVG)`
   fill: currentColor;
   height: 100%;
   stroke: currentColor;
+  left: 0;
   padding: 0 3rem;
+  position: relative;
   vertical-align: middle;
   width: 9rem;
+  transition: 100ms ease all;
 `;
 
 const buttonVariants = {
@@ -32,7 +35,7 @@ const buttonVariants = {
 };
 
 const baseStyles = variant => css`
-  ${({ variant }) => buttonVariants[variant]}
+  ${() => buttonVariants[variant]}
 
   display: inline-block;
   font-family: ${fontNames.serifLight};
@@ -42,6 +45,12 @@ const baseStyles = variant => css`
   padding: 2rem 0;
   text-align: center;
   width: 100%;
+
+  &:hover {
+    ${Arrow} {
+      left: 1rem;
+    }
+  }
 `;
 
 const Link = styled.a`

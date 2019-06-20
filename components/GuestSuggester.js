@@ -1,8 +1,7 @@
 import Autosuggest from 'react-autosuggest';
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { opacify } from 'polished';
+import { transparentize } from 'polished';
 
 import { fontStacks } from '../utils/style-utils/fonts';
 import colours from '../utils/style-utils/colours';
@@ -58,7 +57,7 @@ const GuestSuggestionContainer = styled.div`
 
 const highlightSuggestion = css`
   background: rgba(255, 255, 255, 0.75);
-  border-bottom: 1px solid ${opacify(0.5, colours.forms.borderColor)};
+  border-bottom: 1px solid ${transparentize(0.5, colours.forms.borderColor)};
 `;
 
 const Yes = styled(YesSVG)`
@@ -147,7 +146,5 @@ const GuestSuggester = props => (
     />
   </SuggesterContainer>
 );
-
-GuestSuggester.propTypes = {};
 
 export default GuestSuggester;

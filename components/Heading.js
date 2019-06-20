@@ -23,9 +23,9 @@ const headingSize = {
 
 const getProp = (prop, level) => `${headingSize[level][prop]}`;
 
-const StyledHeading = styled.h1.attrs({
-  as: ({ level }) => level,
-})`
+const StyledHeading = styled.h1.attrs(props => ({
+  as: props.level,
+}))`
   font-family: ${({ level }) => getProp('fontFamily', level)};
   font-size: ${({ level }) => getProp('fontSize', level)};
   font-weight: ${({ level }) => getProp('fontWeight', level)};

@@ -40,7 +40,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StyledInput = styled.input.attrs({
+const StyledInput = styled.input.attrs(() => ({
   type: 'text',
 })`
   appearance: none;

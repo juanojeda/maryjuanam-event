@@ -66,9 +66,9 @@ const NavContainer = styled.nav`
   }
 `;
 
-const NavLink = styled.a.attrs({
-  as: getNavElement,
-})`
+const NavLink = styled.a.attrs(props => ({
+  as: getNavElement(props),
+}))`
   float: left;
   font-size: 1.8rem;
   clear: left;

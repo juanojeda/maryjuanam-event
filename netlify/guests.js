@@ -1,6 +1,6 @@
 import firebaseDB from './firebase';
 
-const handler = async function handler(event, context) {
+const handler = async function handler(event) {
   try {
     const guests = [];
     const guestsDB = await firebaseDB.collection('guests').get();

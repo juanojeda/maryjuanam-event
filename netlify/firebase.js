@@ -8,8 +8,6 @@ if (!process.env.NODE_ENV !== 'production') {
   env = process.env;
 }
 
-console.log(`~~~~~~~~~~ ENV ~~~~~~~~~~ \n`, env);
-
 const firebaseKey = {
   type: env.FIREBASE_ACC_TYPE,
   project_id: env.FIREBASE_PROJECT_ID,
@@ -24,7 +22,6 @@ const firebaseKey = {
 };
 
 if (!admin.apps.length) {
-  console.log('test');
   admin.initializeApp({
     credential: admin.credential.cert(firebaseKey),
   });
