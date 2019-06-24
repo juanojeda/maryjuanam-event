@@ -5,7 +5,7 @@ const bark = '#481210';
 const black = '#100b0a';
 const tangerine = '#EEAC33';
 const berry = '#DB3630';
-const grass = '#80C23E';
+const grass = '#9CC96E';
 
 const colours = {
   images: {

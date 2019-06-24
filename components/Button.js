@@ -51,6 +51,10 @@ const baseStyles = variant => css`
       left: 1rem;
     }
   }
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 const Link = styled.a`
@@ -62,7 +66,6 @@ const Btn = styled.button`
   ${({ variant }) => baseStyles(variant)};
 
   appearance: none;
-  background: transparent;
   border: 0;
 `;
 
@@ -73,7 +76,13 @@ class Button extends PureComponent {
     } = this.props;
     const Component = type === 'link' ? Link : Btn;
 
-    const componentProps = type === 'link' ? { href: link, alt, ...buttonProps } : { onClick: action, ...buttonProps };
+    const componentProps = type === 'link'
+      ? {
+        href: link,
+        alt,
+        ...buttonProps,
+      }
+      : { onClick: action, ...buttonProps };
 
     return (
       <Component {...{ ...componentProps }}>
@@ -91,6 +100,7 @@ Button.propTypes = {
   text: PropTypes.string,
   action: PropTypes.func,
   link: PropTypes.string,
+  disabled: PropTypes.bool,
   alt: PropTypes.string,
 };
 
@@ -101,6 +111,7 @@ Button.defaultProps = {
   text: '',
   action: () => {},
   link: '',
+  disabled: false,
   alt: '',
 };
 

@@ -45,12 +45,14 @@ const fetchAndSetGuests = async (setGuests) => {
 
 const submitRSVP = async (guest, response) => {
   try {
-    await fetch(`${getAPIEndpoint()}/rsvp`, {
+    const data = await fetch(`${getAPIEndpoint()}/rsvp`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
       body: JSON.stringify({ guest, response }),
     });
+    const { guestName, needsTransportDB } = await data.json();
+    return { guestName, needsTransportDB };
   } catch (e) {
     console.error(e);
   }
