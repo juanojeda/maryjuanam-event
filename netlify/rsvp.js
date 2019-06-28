@@ -1,25 +1,38 @@
 import firebaseDB from './firebase';
-import resolveAfterNSecs from '../utils/resolveAfterN';
 
 const handler = async function handler(event) {
   const { guest, response } = JSON.parse(event.body);
   const guestDocRef = await firebaseDB.doc(`guests/${guest.dockey}`);
   const guestDoc = await guestDocRef.get();
-  const oldTransportStatus = guestDoc.data().needs_transport;
+  const guestData = guestDoc.data();
 
   await guestDocRef.update('rsvp', response.rsvp);
 
-  if (oldTransportStatus !== response.needsTransport) {
-    await guestDocRef.update('needs_transport', response.needsTransport);
+  console.info(`~~~~~ CURRENT GUEST DATA ~~~~~`);
+  console.info(guestData);
+
+  console.info(`~~~~~ UPDATING WITH GUEST DATA ~~~~~`);
+  console.info(response);
+
+  if (guestData.needs_transport !== response.needsTransport) {
+    await guestDocRef.update('needs_transport', response.transportRequest);
   }
 
-  // await resolveAfterNSecs(2);
+  if (guestData.dietary_reqs !== response.dietaryReqs) {
+    await guestDocRef.update('dietary_reqs', response.dietaryReqs);
+  }
+
+  if (guestData.song_suggestion !== response.songSuggestion) {
+    await guestDocRef.update('song_suggestion', response.songSuggestion);
+  }
 
   return {
     statusCode: 200,
     body: JSON.stringify({
       guestName: guest.guest_name,
       needsTransportDB: response.needsTransport,
+      dietaryReqsDB: response.dietaryReqs,
+      songSuggestionDB: response.songSuggestion,
     }),
     headers: { 'Content-Type': 'application/json' },
   };

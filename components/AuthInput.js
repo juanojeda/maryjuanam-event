@@ -42,7 +42,7 @@ const StyledButton = styled(Button)`
 
 const StyledInput = styled.input.attrs(() => ({
   type: 'text',
-})`
+}))`
   appearance: none;
   background: rgba(255, 255, 255, 0);
   border: 0;

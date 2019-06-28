@@ -7,6 +7,7 @@ import colours from '../utils/style-utils/colours';
 import { fontStacks } from '../utils/style-utils/fonts';
 
 import Button from './Button';
+import TextInput, { InputContainer } from './Input';
 import GuestSuggester from './GuestSuggester';
 import { GridContainer, GridCell } from './Grid';
 import Paragraph from './Paragraph';
@@ -15,13 +16,14 @@ const RSVPContainer = styled.div`
   position: relative;
 `;
 
-const ButtonContainer = styled(GridContainer)`
-  margin-top: 2rem;
+const FormRow = styled(GridContainer)`
+  margin-top: 3rem;
 `;
 
 const CheckLabel = styled.label`
   display: flex;
   flex-direction: row;
+  font-size: 1.5rem;
 `;
 
 const CheckBox = styled.input.attrs(({ checked }) => ({
@@ -33,6 +35,10 @@ const CheckBox = styled.input.attrs(({ checked }) => ({
   flex-shrink: 0;
   height: 4rem;
   width: 4rem;
+`;
+
+const StyledInputContainer = styled(InputContainer)`
+  font-family: ${fontStacks.serifBold};
 `;
 
 const LoadingContainer = styled.div`
@@ -93,15 +99,21 @@ const filterGuests = (val, list) => {
 };
 
 const RSVPMachine = ({ guestList, submitRSVP }) => {
-  const [suggestions, setSuggestions] = useState(guestList);
-  const [selectedGuest, selectGuest] = useState('');
-  const [inputValue, updateInputValue] = useState('');
   const [isLoading, setLoading] = useState(false);
+  const [suggestions, setSuggestions] = useState(guestList);
+
+  const [selectedGuest, selectGuest] = useState('');
+  const [guestInput, updateGuestInput] = useState('');
   const [transportRequest, setTransportRequest] = useState(false);
+  const [dietaryReqs, setDietaryReqs] = useState('');
+  const [songSuggestion, setSongSuggestion] = useState('');
+
   const [rsvpUpdated, setRsvpUpdated] = useState({
     show: false,
     guestName: '',
     needsTransportDB: false,
+    songSuggestion: null,
+    dietaryReqs: null,
   });
 
   const requestFetchSuggestions = ({ value }) => {
@@ -112,11 +124,21 @@ const RSVPMachine = ({ guestList, submitRSVP }) => {
     selectGuest(suggestion);
   };
 
-  const showRSVPCardAndSetFade = ({ guestName, needsTransportDB }) => {
+  const updateDietaryReqs = event => setDietaryReqs(event.target.value);
+  const updateSongSuggestion = event => setSongSuggestion(event.target.value);
+
+  const showRSVPCardAndSetFade = ({
+    guestName,
+    needsTransportDB,
+    songSuggestionDB,
+    dietaryReqsDB,
+  }) => {
     setRsvpUpdated({
       show: true,
       guestName,
       needsTransportDB,
+      songSuggestionDB,
+      dietaryReqsDB,
     });
 
     setTimeout(() => {
@@ -129,11 +151,20 @@ const RSVPMachine = ({ guestList, submitRSVP }) => {
     setLoading(true);
 
     try {
-      const { guestName, needsTransportDB } = await submitRSVP(selectedGuest, {
-        rsvp,
-        transportRequest,
+      const {
+        guestName, needsTransportDB, songSuggestionDB, dietaryReqsDB,
+      } = await submitRSVP(
+        selectedGuest,
+        {
+          rsvp,
+          transportRequest,
+          songSuggestion,
+          dietaryReqs,
+        },
+      );
+      showRSVPCardAndSetFade({
+        guestName, needsTransportDB, songSuggestionDB, dietaryReqsDB,
       });
-      showRSVPCardAndSetFade({ guestName, needsTransportDB });
     } catch (err) {
       console.error(err);
     }
@@ -146,9 +177,9 @@ const RSVPMachine = ({ guestList, submitRSVP }) => {
 
   const inputProps = {
     placeholder: 'Find your name',
-    value: inputValue,
+    value: guestInput,
     onChange: (evt, { newValue }) => {
-      updateInputValue(newValue);
+      updateGuestInput(newValue);
     },
   };
 
@@ -181,16 +212,35 @@ We'll also add you to the bus list.
             ) : null}
           </RSVPReceivedCard>
         ) : null}
-        <ButtonContainer>
-          <CheckLabel>
-            <CheckBox
-              value={!!transportRequest}
-              onChange={updateTransportRequest(!transportRequest)}
-            />
-            <Paragraph as="span">I would like a bus to and from Heathcote/Kyneton.</Paragraph>
-          </CheckLabel>
-        </ButtonContainer>
-        <ButtonContainer>
+        {selectedGuest ? (
+          <>
+            <FormRow>
+              <CheckLabel>
+                <CheckBox
+                  value={!!transportRequest}
+                  onChange={updateTransportRequest(!transportRequest)}
+                />
+                <Paragraph as="span">I would like a bus to and from Heathcote/Kyneton.</Paragraph>
+              </CheckLabel>
+            </FormRow>
+
+            <FormRow>
+              <StyledInputContainer as="label">
+                <Paragraph as="span">Do you have any dietary requirements?</Paragraph>
+                <TextInput value={dietaryReqs} onChange={updateDietaryReqs} />
+              </StyledInputContainer>
+            </FormRow>
+
+            <FormRow>
+              <StyledInputContainer as="label">
+                <Paragraph as="span">What's a song that gets you dancing?</Paragraph>
+                <TextInput value={songSuggestion} onChange={updateSongSuggestion} />
+              </StyledInputContainer>
+            </FormRow>
+          </>
+        ) : null}
+
+        <FormRow>
           {isLoading ? <LoadingContainer /> : null}
           <GridCell>
             <Button
@@ -204,7 +254,7 @@ We'll also add you to the bus list.
           <GridCell>
             <Button disabled={!selectedGuest} type="button" text="I can't" onClick={declineRSVP} />
           </GridCell>
-        </ButtonContainer>
+        </FormRow>
       </RSVPContainer>
     )
   );

@@ -9,12 +9,13 @@ import colours from '../utils/style-utils/colours';
 import SearchSVG from '../static/search.svg';
 import YesSVG from '../static/checkmark.svg';
 import NoSVG from '../static/cross.svg';
+import TextInput from './Input';
 
 const SearchIcon = styled(SearchSVG)`
   fill: currentColor;
   position: absolute;
   right: 2rem;
-  top: 2rem;
+  top: 3rem;
   width: 2.5rem;
   height: 2.5rem;
 `;
@@ -27,21 +28,6 @@ const SuggesterContainer = styled.div`
 const InputContainer = styled.div`
   position: relative;
   border-bottom: 2px solid ${colours.forms.borderColor};
-`;
-
-const Input = styled.input`
-  appearance: none;
-  background: transparent;
-  border: none;
-  font-family: ${fontStacks.serifRegular};
-  font-size: 2rem;
-  padding: 2rem;
-  width: 100%;
-
-  &:focus {
-    background: rgba(255, 255, 255, 0.5);
-    outline: 1px solid ${colours.forms.borderFocusColor};
-  }
 `;
 
 const GuestSuggestionContainer = styled.div`
@@ -98,7 +84,7 @@ const RSVPBadge = styled.div`
 
 const GuestInput = inputProps => (
   <InputContainer>
-    <Input {...inputProps} />
+    <TextInput {...inputProps} />
     <SearchIcon />
   </InputContainer>
 );
