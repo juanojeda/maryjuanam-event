@@ -1,3 +1,4 @@
+import { google } from 'googleapis';
 import admin from 'firebase-admin';
 
 let env;
@@ -8,9 +9,11 @@ if (!process.env.NODE_ENV !== 'production') {
   env = process.env;
 }
 
+export const PROJECT_ID = env.FIREBASE_PROJECT_ID;
+
 const firebaseKey = {
   type: env.FIREBASE_ACC_TYPE,
-  project_id: env.FIREBASE_PROJECT_ID,
+  project_id: PROJECT_ID,
   private_key_id: env.FIREBASE_PRIVATE_KEY_ID,
   private_key: env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
   client_email: env.FIREBASE_CLIENT_EMAIL,
@@ -28,5 +31,38 @@ if (!admin.apps.length) {
 }
 
 const firebaseDB = admin.firestore();
+
+export const getAuthToken = async () => {
+  const scopes = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/firebase.database',
+    'https://www.googleapis.com/auth/datastore',
+  ];
+
+  const jwtClient = new google.auth.JWT(
+    firebaseKey.client_email,
+    null,
+    firebaseKey.private_key.replace(/\\n/g, '\n'),
+    scopes,
+    null,
+  );
+
+  let authToken;
+  try {
+    const tokens = await jwtClient.authorize();
+
+    if (tokens.access_token === null) {
+      throw new Error(
+        'Provided service account does not have permission to generate access tokens',
+      );
+    }
+
+    authToken = tokens.access_token;
+  } catch (err) {
+    console.log('Error making request to generate access token:', err);
+  }
+
+  return authToken;
+};
 
 export default firebaseDB;

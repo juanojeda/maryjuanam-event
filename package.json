@@ -38,6 +38,8 @@
     "es6-promise": "^4.1.1",
     "express": "^4.16.4",
     "firebase-admin": "^7.3.0",
+    "googleapis": "^40.0.1",
+    "isomorphic-unfetch": "^3.0.0",
     "local-storage": "^1.4.2",
     "lodash": "^4.17.11",
     "netlify-lambda": "^1.4.0",
