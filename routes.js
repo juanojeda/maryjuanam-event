@@ -5,7 +5,7 @@
  * */
 const routes = (module.exports = require('next-routes')());
 
-routes.add('/', '/save-the-date');
-routes.add('/splash', '/splash');
+routes.add('/save-the-date', '/save-the-date');
+routes.add('/', '/splash');
 routes.add('/home', '/home');
 routes.add('/rsvp', '/rsvp');
