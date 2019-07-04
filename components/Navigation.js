@@ -111,10 +111,10 @@ export default ({ activePage }) => (
   <NavWindow>
     <NavSlider>
       <NavContainer>
-        <NavLink currentPage={activePage} targetPage="home" href="home">
+        <NavLink currentPage={activePage} targetPage="home" href="/home">
           When &amp; where
         </NavLink>
-        <NavLink currentPage={activePage} targetPage="rsvp" href="rsvp">
+        <NavLink currentPage={activePage} targetPage="rsvp" href="/rsvp">
           RSVP
         </NavLink>
         <NavLink currentPage={activePage} targetPage="faq" href="#">
