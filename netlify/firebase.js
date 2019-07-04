@@ -10,6 +10,7 @@ if (!process.env.NODE_ENV !== 'production') {
 }
 
 export const PROJECT_ID = env.FIREBASE_PROJECT_ID;
+export const FIREBASE_URL = `https://firestore.googleapis.com/v1beta1/projects`;
 
 const firebaseKey = {
   type: env.FIREBASE_ACC_TYPE,
@@ -34,7 +35,6 @@ const firebaseDB = admin.firestore();
 
 export const getAuthToken = async () => {
   const scopes = [
-    'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/firebase.database',
     'https://www.googleapis.com/auth/datastore',
   ];

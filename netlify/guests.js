@@ -1,14 +1,8 @@
 import fetch from 'isomorphic-unfetch';
-import { getAuthToken, PROJECT_ID } from './firebase';
+import { getAuthToken, PROJECT_ID, FIREBASE_URL } from './firebase';
+import firebaseFieldsToDoc from '../utils/firebaseFieldsToDoc';
 
-const parseValue = ([key, valueObject]) => {
-  const value = valueObject.stringValue || valueObject.nullValue || valueObject.booleanValue;
-
-  return { [key]: value };
-};
-const flattenArrayToObject = (acc, curr) => ({ ...acc, ...curr });
-
-const handler = async function handler(event) {
+const handler = async function handler(_) {
   try {
     const authToken = await getAuthToken();
 
@@ -19,7 +13,7 @@ const handler = async function handler(event) {
     );
 
     const guestsDBRes = await fetch(
-      `https://firestore.googleapis.com/v1beta1/projects/${PROJECT_ID}/databases/(default)/documents/guests?${fieldMaskQuery}&pageSize=150`,
+      `${FIREBASE_URL}/${PROJECT_ID}/databases/(default)/documents/guests?${fieldMaskQuery}&pageSize=150`,
       {
         method: 'GET',
         headers: {
@@ -31,9 +25,7 @@ const handler = async function handler(event) {
 
     const guestDocs = guestsDB.documents;
 
-    const guests = guestDocs.map(guest => Object.entries(guest.fields)
-      .map(parseValue)
-      .reduce(flattenArrayToObject, {}));
+    const guests = guestDocs.map(firebaseFieldsToDoc);
 
     console.log(`returning ${guests.length} entries`);
 
