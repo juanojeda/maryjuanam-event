@@ -6,8 +6,10 @@ const black = '#100b0a';
 const tangerine = '#EEAC33';
 const berry = '#DB3630';
 const grass = '#9CC96E';
+const darkSky = '#1e4ec9';
 
 const colours = {
+  links: darkSky,
   images: {
     vignette: `radial-gradient(ellipse at 50% 50%, ${transparentize(0.7, black)}, ${transparentize(
       0.0,

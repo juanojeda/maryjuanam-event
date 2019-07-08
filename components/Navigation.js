@@ -117,7 +117,7 @@ export default ({ activePage }) => (
         <NavLink currentPage={activePage} targetPage="rsvp" href="/rsvp">
           RSVP
         </NavLink>
-        <NavLink currentPage={activePage} targetPage="faq" href="#">
+        <NavLink currentPage={activePage} targetPage="faq" href="/faq">
           Useful information
         </NavLink>
         <NavLink currentPage={activePage} targetPage="contact" href="#">

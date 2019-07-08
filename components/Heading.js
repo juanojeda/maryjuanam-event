@@ -19,6 +19,14 @@ const headingSize = {
     marginTop: 0,
     marginBottom: 0,
   },
+  h3: {
+    fontSize: '2.8rem',
+    lineHeight: '4.4rem',
+    fontFamily: fontStacks.serifLight,
+    fontWeight: 200,
+    marginTop: 0,
+    marginBottom: 0,
+  },
 };
 
 const getProp = (prop, level) => `${headingSize[level][prop]}`;

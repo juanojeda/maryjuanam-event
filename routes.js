@@ -9,3 +9,4 @@ routes.add('/save-the-date', '/save-the-date');
 routes.add('/', '/splash');
 routes.add('/home', '/home');
 routes.add('/rsvp', '/rsvp');
+routes.add('/faq', '/faq');

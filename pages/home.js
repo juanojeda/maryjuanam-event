@@ -3,25 +3,11 @@ import styled from 'styled-components';
 
 import WithSesameLock from '../hoc/withSesameLock';
 import WithLoggedInLayout from '../hoc/withLoggedInLayout';
-import { GridContainer, GridCell } from '../components/Grid';
-import FeatureImage from '../components/FeatureImage';
+import { GridContainer } from '../components/Grid';
 import Heading from '../components/Heading';
 import Paragraph from '../components/Paragraph';
-import { getBreakpoint } from '../utils/style-utils/breakpoints';
-
-const StickyFeatureImage = styled(FeatureImage)`
-  ${getBreakpoint('md')} {
-    position: fixed;
-    top: 0;
-  }
-`;
-
-const OrderedCell = styled(GridCell)`
-  ${getBreakpoint('md')} {
-    padding-top: ${({ content }) => (content === 'copy' ? '12.5rem' : 0)};
-    order: ${({ content }) => (content === 'img' ? 2 : 1)};
-  }
-`;
+import OrderedCell from '../components/OrderedCell';
+import StickyFeatureImage from '../components/StickyFeatureImage';
 
 const InfoSection = styled.div`
   padding-top: 2rem;
