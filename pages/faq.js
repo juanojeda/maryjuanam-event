@@ -20,7 +20,7 @@ const questions = [
   {
     id: 'get-there',
     heading: 'How do I get there?',
-    answer: () => <>Mimosa Glen is about 80 minutes' drive from Melbourne CBD (<StyledLink href={googleDirections}>check out the directions</StyledLink>). If you can get to Heathcote or Kyneton, we'll provide a shuttle bus to and from the venue for your convenience. Remember to let us know you'd like a seat when you <StyledLink href="/rsvp">RSVP</StyledLink>!</>,
+    answer: () => <>Mimosa Glen is about 80 minutes' drive from Melbourne CBD (<StyledLink href={googleDirections}>check out the directions</StyledLink>). If you can get to Heathcote or Kyneton town centres on the day, we'll provide a shuttle bus to and from the venue for your convenience. Remember to let us know you'd like a seat when you <StyledLink href="/rsvp">RSVP</StyledLink>!</>,
   },
   {
     id: 'accom',
