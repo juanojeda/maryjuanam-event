@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
+import Link from 'next/link';
 
 import colours from '../utils/style-utils/colours';
 import { getBreakpoint } from '../utils/style-utils/breakpoints';
@@ -66,12 +67,13 @@ const NavContainer = styled.nav`
   }
 `;
 
-const NavLink = styled.a.attrs(props => ({
+const NavLinkEl = styled.a.attrs(props => ({
   as: getNavElement(props),
 }))`
   float: left;
   font-size: 1.8rem;
   clear: left;
+  cursor: pointer;
   margin-bottom: 2rem;
   margin-left: 3rem;
   margin-right: 3rem;
@@ -106,6 +108,14 @@ const NavLink = styled.a.attrs(props => ({
     margin: 0;
   }
 `;
+
+const NavLink = ({ href, children, ...props }) => (
+  <Link href={href}>
+    <NavLinkEl href={href} {...props}>
+      {children}
+    </NavLinkEl>
+  </Link>
+);
 
 export default ({ activePage }) => (
   <NavWindow>

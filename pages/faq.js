@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 import WithSesameLock from '../hoc/withSesameLock';
 import WithLoggedInLayout from '../hoc/withLoggedInLayout';
@@ -12,9 +13,18 @@ import StickyFeatureImage from '../components/StickyFeatureImage';
 import colours from '../utils/style-utils/colours';
 
 const googleDirections = 'https://www.google.com/maps/dir/Mimosa+Glen+Homestead,+2415+Lancefield-Tooborac+Rd,+Tooborac+VIC+3522/CBD,+Melbourne+VIC+3000/@-37.4296362,144.5849425,10z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x6ad776127774d62f:0x6318f0d3debc4849!2m2!1d144.766693!2d-37.079595!1m5!1m1!1s0x6ad642caf37771c5:0x834e664d24dced61!2m2!1d144.9623382!2d-37.8123652!3e0';
-const StyledLink = styled.a`
+const StyledLinkEl = styled.a`
   color: ${colours.links};
+  cursor: pointer;
 `;
+
+const StyledLink = ({ href, children, ...props }) => (
+  <Link href={href}>
+    <StyledLinkEl href={href} {...props}>
+      {children}
+    </StyledLinkEl>
+  </Link>
+);
 
 const questions = [
   {
