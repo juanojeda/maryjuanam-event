@@ -75,11 +75,27 @@ const questions = [
     heading: `What's the #hashtag? Can I take pics?`,
     answer: `We 100% want you to take photos (after the ceremony, please)! Get your squad together, strike a pose, and if you post it on the socials be sure to tag it with the hashtag #FindTheJuanAndMaryam`,
   },
+  {
+    id: 'more-questions',
+    heading: `I have more questions!`,
+    answer: () => (
+      <>
+        That's fine!
+        {' '}
+        <StyledLink href="/contact">Get in touch with us</StyledLink>
+        {' '}
+and we'll answer
+        them :)
+      </>
+    ),
+  },
 ];
 
 const QuestionAnswerGroup = styled.div`
   padding-top: 2rem;
   padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;
 
 const FAQ = props => (

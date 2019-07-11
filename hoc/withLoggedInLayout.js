@@ -7,9 +7,11 @@ import Navigation from '../components/Navigation';
 import { getBreakpoint } from '../utils/style-utils/breakpoints';
 
 const CentredGridCell = styled(GridCell)`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  ${getBreakpoint('md')} {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
 `;
 
 const StickyContainer = styled.div`
