@@ -9,8 +9,8 @@ import Paragraph from '../components/Paragraph';
 import OrderedCell from '../components/OrderedCell';
 import StickyFeatureImage from '../components/StickyFeatureImage';
 
-import colours from '../utils/style-utils/colours';
 import { fontStacks } from '../utils/style-utils/fonts';
+import { getBreakpoint } from '../utils/style-utils/breakpoints';
 
 const ContactDetailsContainer = styled.dl`
   padding-top: 2rem;
@@ -23,13 +23,25 @@ const ContactDetailsLine = styled.div`
   font-size: 2rem;
 `;
 const ContactDetailsType = styled.dl`
-  display: inline-block;
-  width: 30%;
   font-family: ${fontStacks.serifBold};
+
+  ${getBreakpoint('md')} {
+    display: inline-block;
+    width: 30%;
+  }
 `;
+
 const ContactDetailsValue = styled.dt`
-  display: inline-block;
-  width: 50%;
+  ${getBreakpoint('md')} {
+    display: inline-block;
+    width: 30%;
+  }
+`;
+
+const PaddedOrderedCell = styled(OrderedCell)`
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 `;
 
 const Contact = props => (
@@ -37,7 +49,7 @@ const Contact = props => (
     <OrderedCell content="img" md={5} lg={5}>
       <StickyFeatureImage src="../static/images/srs-bsns.jpg" />
     </OrderedCell>
-    <OrderedCell content="copy" md={7} lg={7}>
+    <PaddedOrderedCell content="copy" md={7} lg={7}>
       <Heading level="h1">Get in touch</Heading>
 
       <Paragraph>
@@ -60,7 +72,7 @@ const Contact = props => (
           </ContactDetailsValue>
         </ContactDetailsLine>
       </ContactDetailsContainer>
-    </OrderedCell>
+    </PaddedOrderedCell>
   </GridContainer>
 );
 

@@ -91,11 +91,15 @@ and we'll answer
   },
 ];
 
+const PaddedOrderedCell = styled(OrderedCell)`
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+`;
+
 const QuestionAnswerGroup = styled.div`
   padding-top: 2rem;
   padding-bottom: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
 `;
 
 const FAQ = props => (
@@ -103,7 +107,7 @@ const FAQ = props => (
     <OrderedCell content="img" md={5} lg={5}>
       <StickyFeatureImage src="../static/images/r-u-sure.jpg" />
     </OrderedCell>
-    <OrderedCell content="copy" md={7} lg={7}>
+    <PaddedOrderedCell content="copy" md={7} lg={7}>
       <Heading level="h1">Useful Information</Heading>
 
       {questions.map(({ heading, answer, id }) => {
@@ -123,7 +127,7 @@ const FAQ = props => (
           </QuestionAnswerGroup>
         );
       })}
-    </OrderedCell>
+    </PaddedOrderedCell>
   </GridContainer>
 );
 
