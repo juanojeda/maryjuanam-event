@@ -10,3 +10,4 @@ routes.add('/', '/splash');
 routes.add('/home', '/home');
 routes.add('/rsvp', '/rsvp');
 routes.add('/faq', '/faq');
+routes.add('/contact', '/contact');

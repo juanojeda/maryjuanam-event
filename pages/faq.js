@@ -20,7 +20,20 @@ const questions = [
   {
     id: 'get-there',
     heading: 'How do I get there?',
-    answer: () => <>Mimosa Glen is about 80 minutes' drive from Melbourne CBD (<StyledLink href={googleDirections}>check out the directions</StyledLink>). If you can get to Heathcote or Kyneton town centres on the day, we'll provide a shuttle bus to and from the venue for your convenience. Remember to let us know you'd like a seat when you <StyledLink href="/rsvp">RSVP</StyledLink>!</>,
+    answer: () => (
+      <>
+        Mimosa Glen is about 80 minutes' drive from Melbourne CBD (
+        <StyledLink href={googleDirections} target="_blank">
+          check out the directions
+        </StyledLink>
+        ). If you can get to Heathcote or Kyneton town centres on the day, we'll provide a shuttle
+        bus to and from the venue for your convenience. Remember to let us know you'd like a seat
+        when you
+        {' '}
+        <StyledLink href="/rsvp">RSVP</StyledLink>
+!
+      </>
+    ),
   },
   {
     id: 'accom',
@@ -32,7 +45,6 @@ const questions = [
     heading: 'I heard there was a bus?',
     answer: 'More details to come!',
   },
-  
   {
     id: 'gifts',
     heading: 'What about gifts?',
@@ -68,22 +80,23 @@ const FAQ = props => (
     <OrderedCell content="copy" md={7} lg={7}>
       <Heading level="h1">Useful Information</Heading>
 
-      {questions.map(({heading, answer, id}) => {
-        let paragraphProps = {};
+      {questions.map(({ heading, answer, id }) => {
+        const paragraphProps = {};
 
         if (typeof answer === 'function') {
           paragraphProps.children = answer();
         } else {
           paragraphProps.dangerouslySetInnerHTML = {
-            __html: answer
-          }
+            __html: answer,
+          };
         }
         return (
-        <QuestionAnswerGroup key={id}>
-          <Heading level="h3">{heading}</Heading>
-          <Paragraph {...paragraphProps} />
-        </QuestionAnswerGroup>
-      )})}
+          <QuestionAnswerGroup key={id}>
+            <Heading level="h3">{heading}</Heading>
+            <Paragraph {...paragraphProps} />
+          </QuestionAnswerGroup>
+        );
+      })}
     </OrderedCell>
   </GridContainer>
 );
