@@ -73,7 +73,7 @@ const questions = [
   {
     id: 'hashtag',
     heading: `What's the #hashtag? Can I take pics?`,
-    answer: `We 100% want you to take photos (after the ceremony, please)! Get your squad together, strike a pose, and if you post it on the socials be sure to tag it with the hashtag #FindTheJuanAndMaryam`,
+    answer: `We 100% want you to take photos (after the ceremony, please)! If you post it on the socials be sure to tag it with the hashtag #FindTheJuanAndMaryam`,
   },
   {
     id: 'more-questions',
