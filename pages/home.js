@@ -37,17 +37,6 @@ const Home = props => (
           Tooborac, Victoria 3522
         </Paragraph>
       </InfoSection>
-
-      <InfoSection>
-        <Heading level="h2">Getting there</Heading>
-        <Paragraph>
-          We'll be booking a courtesy bus between Heathcote, Kyneton, and the venue, so let us know
-          when you RSVP if you'd like a spot!
-        </Paragraph>
-        <Paragraph>
-          We'll confirm times and locations closer to the date, so watch this space.
-        </Paragraph>
-      </InfoSection>
     </OrderedCell>
   </GridContainer>
 );
