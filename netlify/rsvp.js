@@ -1,9 +1,12 @@
 import fetch from 'isomorphic-unfetch';
 import { getAuthToken, PROJECT_ID, FIREBASE_URL } from './firebase';
 import firebaseFieldsToDoc from '../utils/firebaseFieldsToDoc';
+import SparkPost from 'sparkpost';
 
 const handler = async function handler(event) {
   const { guest, response } = JSON.parse(event.body);
+  const { EMAIL_API_KEY } = process.env;
+  const emailClient = new SparkPost(EMAIL_API_KEY);
 
   const guestDocument = {
     name: guest.dockey,
@@ -45,20 +48,43 @@ const handler = async function handler(event) {
     );
     const resJSON = await res.json();
 
-    const DBGuestDoc = firebaseFieldsToDoc(resJSON);
+    const { rsvp, guest_name, needs_transport, dietary_reqs, song_suggestion } = firebaseFieldsToDoc(resJSON);
 
     if (resJSON.error) {
       console.log(resJSON.error);
       throw new Error(resJSON.error.message);
     }
 
+    await emailClient.transmissions.send({
+      content: {
+        from: 'updates@findthejuanandmaryam.com',
+        subject: `🎉 RSVP update! 🎉 - ${guest_name}`,
+        html: `
+        <html>
+          <body>
+            <p>🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉<br />
+            🎉🍾 Hurray! Another RSVP! 🍾🎉<br />
+            🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉</p>
+
+            <p><strong>Guest:</strong> ${guest_name}<br />
+            <strong>Response:</strong> ${rsvp}<br />
+            <strong>Needs transport:</strong> ${needs_transport}<br />
+            <strong>Dietary reqs:</strong> ${dietary_reqs}<br />
+            <strong>Song suggestion:</strong> ${song_suggestion}<br />
+          </body>
+        </html>
+        `,
+      },
+      recipients: [{ address: 'juan+wedding@juanojeda.com' }],
+    });
+
     return {
       statusCode: 200,
       body: JSON.stringify({
-        guestName: DBGuestDoc.guest_name,
-        needsTransportDB: DBGuestDoc.needs_transport,
-        dietaryReqsDB: DBGuestDoc.dietary_reqs,
-        songSuggestionDB: DBGuestDoc.song_suggestion,
+        guestName: guest_name,
+        needsTransportDB: needs_transport,
+        dietaryReqsDB: dietary_reqs,
+        songSuggestionDB: song_suggestion,
       }),
       headers: { 'Content-Type': 'application/json' },
     };
