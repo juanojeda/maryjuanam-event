@@ -67,7 +67,7 @@ const handler = async function handler(event) {
             🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉🍾🎉</p>
 
             <p><strong>Guest:</strong> ${guest_name}<br />
-            <strong>Response:</strong> ${rsvp}<br />
+            <strong>Response:</strong> ${rsvp === 'TRUE' ? `I'll be there!` : `Sorry, I can't make it `}<br />
             <strong>Needs transport:</strong> ${needs_transport}<br />
             <strong>Dietary reqs:</strong> ${dietary_reqs}<br />
             <strong>Song suggestion:</strong> ${song_suggestion}<br />
