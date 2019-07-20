@@ -24,6 +24,12 @@ const CheckLabel = styled.label`
   display: flex;
   flex-direction: row;
   font-size: 1.5rem;
+  align-items: center;
+`;
+
+const InfoParagraph = styled(Paragraph)`
+  font-size: 1.6rem;
+  font-style: italic;
 `;
 
 const CheckBox = styled.input.attrs(({ checked }) => ({
@@ -220,8 +226,9 @@ We'll also add you to the bus list.
                   value={!!transportRequest}
                   onChange={updateTransportRequest(!transportRequest)}
                 />
-                <Paragraph as="span">I would like a bus to and from Heathcote/Kyneton.</Paragraph>
+                <Paragraph as="span">I would definitely like a seat on the bus to and from Heathcote/Kyneton.</Paragraph>
               </CheckLabel>
+              <InfoParagraph>If you're unsure, you can come back and fill this bit out later.</InfoParagraph>
             </FormRow>
 
             <FormRow>

@@ -53,7 +53,7 @@ const questions = [
   {
     id: 'bus',
     heading: 'I heard there was a bus?',
-    answer: 'More details to come!',
+    answer: `There will be a bus! It'll be picking up from Heathcote/Kyneton town centres. When you RSVP, please let us know if you'd like a spot on the bus. Please note that we'll be booking the bus size based on the number of people who respond.`,
   },
   {
     id: 'gifts',

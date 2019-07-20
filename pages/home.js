@@ -37,6 +37,11 @@ const Home = props => (
           Tooborac, Victoria 3522
         </Paragraph>
       </InfoSection>
+
+      <InfoSection>
+        <Heading level="h3">RSVP By</Heading>
+        <Paragraph>7th December 2019</Paragraph>
+      </InfoSection>
     </OrderedCell>
   </GridContainer>
 );
