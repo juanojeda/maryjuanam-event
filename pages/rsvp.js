@@ -78,6 +78,7 @@ const Rsvp = () => {
             We're so excited to invite you to share our day with us! Just type your name in below to
             let us know if you can make it.
           </Paragraph>
+          <Paragraph>Please RSVP for each person on your invite individually.</Paragraph>
 
           <RSVPMachine guestList={guests} submitRSVP={submitRSVP} />
         </InfoSection>
